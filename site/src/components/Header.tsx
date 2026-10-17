@@ -1,48 +1,32 @@
-import { useEffect, useRef, useState } from 'react'
-
 const LINKS = [
-  { href: '#features', label: '为什么原生' },
-  { href: '#stages', label: '构建原理' },
-  { href: '#corpus', label: '对比测试' },
-  { href: '#install', label: '安装' },
+  { href: '#features', label: '特性' },
+  { href: '#stages', label: '快速开始' },
+  { href: '#proof', label: '对比测试' },
+  { href: 'https://vercel.com/labs', label: 'Vercel Labs' },
 ]
 
 export default function Header() {
-  const [chapter, setChapter] = useState('dark')
-  const raf = useRef(0)
-
-  useEffect(() => {
-    const sections = Array.from(document.querySelectorAll('[data-chapter]'))
-    const onScroll = () => {
-      cancelAnimationFrame(raf.current)
-      raf.current = requestAnimationFrame(() => {
-        const line = 64
-        let cur = 'dark'
-        for (const s of sections) {
-          if (s.getBoundingClientRect().top <= line) cur = (s as HTMLElement).dataset.chapter ?? 'dark'
-        }
-        setChapter(cur)
-      })
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      cancelAnimationFrame(raf.current)
-    }
-  }, [])
-
   return (
-    <header className={`site-header ch-${chapter}`}>
-      <a className="wordmark" href="#top">tsc-ts</a>
-      <nav aria-label="页面导航">
-        {LINKS.map((l) => (
-          <a key={l.href} href={l.href}>{l.label}</a>
-        ))}
-      </nav>
-      <a className="btn btn-header" href="https://github.com/vercel-labs/tsc-ts" target="_blank" rel="noreferrer">
-        GitHub 仓库
-      </a>
+    <header className="site-header">
+      <div className="nav-inner">
+        <a className="wordmark" href="#top">
+          <svg className="tri" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3 23 21H1Z" fill="currentColor" />
+          </svg>
+          tsc-ts
+          <span className="labs-tag">Labs</span>
+        </a>
+        <nav aria-label="页面导航">
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <a className="btn btn-ghost" href="https://github.com/vercel-labs/tsc-ts" target="_blank" rel="noreferrer">
+          GitHub
+        </a>
+      </div>
     </header>
   )
 }

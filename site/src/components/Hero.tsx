@@ -1,101 +1,78 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import type { CSSVars } from '../cssvars'
 
-const GROUPS = {
-  all: {
-    label: '全部 11 部分',
-    rows: ['扫描器', '解析器与 AST', '绑定器', '类型检查器', '声明文件输出'],
-  },
-  syntax: {
-    label: '语法',
-    rows: ['扫描器', '解析器与 AST'],
-  },
-  semantic: {
-    label: '语义',
-    rows: ['绑定器', '模块解析', '类型检查器'],
-  },
-  output: {
-    label: '输出与构建',
-    rows: ['JavaScript 输出', '声明文件输出', '--build 与 --incremental'],
-  },
-}
-
-type GroupKey = keyof typeof GROUPS
+const TABS = [
+  { key: 'npm', cmd: 'npm install -D tsc-ts' },
+  { key: 'pnpm', cmd: 'pnpm add -D tsc-ts' },
+  { key: 'yarn', cmd: 'yarn add -D tsc-ts' },
+]
 
 export default function Hero() {
-  const [group, setGroup] = useState<GroupKey>('all')
+  const [tab, setTab] = useState('npm')
   const [copied, setCopied] = useState(false)
-  const figRef = useRef<HTMLHeadingElement>(null)
-
-  useEffect(() => {
-    const el = figRef.current
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let raf = 0
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        el.style.transform = `translateY(${Math.min(window.scrollY * 0.08, 72)}px)`
-      })
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      cancelAnimationFrame(raf)
-    }
-  }, [])
+  const cmd = TABS.find((t) => t.key === tab)?.cmd ?? TABS[0].cmd
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText('npm install -D tsc-ts')
+      await navigator.clipboard.writeText(cmd)
     } catch {
-      /* 剪贴板不可用时忽略 */
+      /* 忽略 */
     }
     setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setTimeout(() => setCopied(false), 1800)
   }
 
   return (
-    <section id="top" className="hero" data-chapter="dark">
-      <div className="hero-controls">
-        <div className="hero-toggles" role="tablist" aria-label="对比类别">
-          {Object.entries(GROUPS).map(([key, g]) => (
-            <button
-              key={key}
-              role="tab"
-              aria-selected={group === key}
-              className={`tg${group === key ? ' on' : ''}`}
-              onClick={() => setGroup(key as GroupKey)}
-            >
-              {g.label}
-            </button>
-          ))}
+    <section id="top" className="hero">
+      <div className="hero-inner">
+        <h1 className="hero-title rv">
+          TypeScript 7.0.2，
+          <br />
+          原生再编译
+        </h1>
+        <p className="hero-sub rv" style={{ '--d': '80ms' } as CSSVars}>
+          tsc-ts 是 TypeScript-Go（tsgo）的实验性原生移植，由 scriptc
+          编译为原生可执行文件。编译器的每一部分都在官方测试语料上与 tsgo
+          逐项对比，全部匹配。
+        </p>
+        <div className="hero-actions rv" style={{ '--d': '160ms' } as CSSVars}>
+          <button className="btn btn-primary" onClick={copy}>
+            {copied ? '已复制，去终端粘贴' : '立即安装'}
+          </button>
+          <a className="btn btn-secondary" href="https://github.com/vercel-labs/tsc-ts" target="_blank" rel="noreferrer">
+            查看源码
+          </a>
         </div>
-        <button className="btn" onClick={copy}>
-          {copied ? '已复制，去终端粘贴' : 'npm install -D tsc-ts'}
-        </button>
-      </div>
-
-      <div className="hero-main">
-        <div className="hero-figure">
-          <div className="figure-wrap rv">
-            <h1 className="figure" ref={figRef}>
-              17,000
-            </h1>
-          </div>
-          <p className="figure-unit">个测试单元 · 全部与 tsgo 匹配</p>
-          <p className="hero-note">
-            tsc-ts 是 TypeScript 7.0.2 编译器（TypeScript-Go，简称 tsgo）的原生代码移植，
-            由 scriptc 编译为原生可执行文件。数字来自 TypeScript 官方测试语料：
-            约 12,500 个文件，拆分多文件用例后约 17,000 个单元，逐项与 tsgo 对比。
-          </p>
-        </div>
-        <div className="hero-table rv" style={{ '--d': '120ms' } as CSSVars}>
-          {GROUPS[group].rows.map((name) => (
-            <div className="hrow" key={name}>
-              <span className="hname">{name}</span>
-              <span className="hval">匹配 100%</span>
+        <div className="term-window rv" style={{ '--d': '240ms' } as CSSVars} data-ui>
+          <div className="term-bar">
+            <span className="dots" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <div className="term-tabs" role="tablist" aria-label="包管理器">
+              {TABS.map((t) => (
+                <button
+                  key={t.key}
+                  role="tab"
+                  aria-selected={tab === t.key}
+                  className={`term-tab${tab === t.key ? ' on' : ''}`}
+                  onClick={() => setTab(t.key)}
+                >
+                  {t.key}
+                </button>
+              ))}
             </div>
-          ))}
+            <button className="term-copy" onClick={copy}>
+              {copied ? '已复制' : '复制'}
+            </button>
+          </div>
+          <pre className="term-body">
+            <span className="prompt">$ </span>
+            {cmd}
+            {'\n'}
+            <span className="dim">+ tsc-ts 0.0.2 · added 2 packages · 原生二进制随平台可选依赖安装</span>
+          </pre>
         </div>
       </div>
     </section>
