@@ -1,0 +1,11 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# WorkBuddy / 设计工具工作文件
+.workbuddy/
+.frontend-studio/
+
+# 系统文件
+Thumbs.db
+.DS_Store
