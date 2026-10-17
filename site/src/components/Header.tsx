@@ -19,7 +19,7 @@ export default function Header() {
         const line = 64
         let cur = 'dark'
         for (const s of sections) {
-          if (s.getBoundingClientRect().top <= line) cur = s.dataset.chapter
+          if (s.getBoundingClientRect().top <= line) cur = (s as HTMLElement).dataset.chapter ?? 'dark'
         }
         setChapter(cur)
       })

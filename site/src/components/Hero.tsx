@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import type { CSSVars } from '../cssvars'
 
 const GROUPS = {
   all: {
@@ -19,10 +20,12 @@ const GROUPS = {
   },
 }
 
+type GroupKey = keyof typeof GROUPS
+
 export default function Hero() {
-  const [group, setGroup] = useState('all')
+  const [group, setGroup] = useState<GroupKey>('all')
   const [copied, setCopied] = useState(false)
-  const figRef = useRef(null)
+  const figRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
     const el = figRef.current
@@ -61,7 +64,7 @@ export default function Hero() {
               role="tab"
               aria-selected={group === key}
               className={`tg${group === key ? ' on' : ''}`}
-              onClick={() => setGroup(key)}
+              onClick={() => setGroup(key as GroupKey)}
             >
               {g.label}
             </button>
@@ -86,7 +89,7 @@ export default function Hero() {
             约 12,500 个文件，拆分多文件用例后约 17,000 个单元，逐项与 tsgo 对比。
           </p>
         </div>
-        <div className="hero-table rv" style={{ '--d': '120ms' }}>
+        <div className="hero-table rv" style={{ '--d': '120ms' } as CSSVars}>
           {GROUPS[group].rows.map((name) => (
             <div className="hrow" key={name}>
               <span className="hname">{name}</span>

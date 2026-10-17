@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { CSSVars } from '../cssvars'
 
 const MANAGERS = [
   { key: 'npm', cmd: 'npm install -D tsc-ts' },
@@ -8,7 +9,7 @@ const MANAGERS = [
 export default function Cta() {
   const [mgr, setMgr] = useState('npm')
   const [copied, setCopied] = useState(false)
-  const cmd = MANAGERS.find((m) => m.key === mgr).cmd
+  const cmd = MANAGERS.find((m) => m.key === mgr)?.cmd ?? MANAGERS[0].cmd
 
   const copy = async () => {
     try {
@@ -28,11 +29,11 @@ export default function Cta() {
           <br />
           装上它
         </p>
-        <p className="cta-note rv" style={{ '--d': '90ms' }}>
+        <p className="cta-note rv" style={{ '--d': '90ms' } as CSSVars}>
           复制命令，粘贴到你的项目终端——第一步就这样完成了。
         </p>
       </div>
-      <div className="cta-dialog-wrap rv" style={{ '--d': '120ms' }}>
+      <div className="cta-dialog-wrap rv" style={{ '--d': '120ms' } as CSSVars}>
         <div className="cta-dialog" data-ui role="group" aria-label="安装命令生成器">
           <h3>把 tsc-ts 装进你的项目</h3>
           <label className="dlabel" htmlFor="proj">

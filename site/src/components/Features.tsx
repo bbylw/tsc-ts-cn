@@ -1,3 +1,4 @@
+import type { CSSVars } from '../cssvars'
 const MODULES = [
   {
     title: '原生可执行文件',
@@ -71,7 +72,7 @@ export default function Features() {
         {MODULES.map((m) => (
           <article className="feat-module" key={m.title}>
             <div className="fpanel rv" data-ui>{m.frag}</div>
-            <div className="ftext rv" style={{ '--d': '90ms' }}>
+            <div className="ftext rv" style={{ '--d': '90ms' } as CSSVars}>
               <h3>{m.title}</h3>
               {m.paras.map((p) => (
                 <p key={p.slice(0, 12)}>{p}</p>

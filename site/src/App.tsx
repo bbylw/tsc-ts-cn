@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
-import Header from './components/Header.jsx'
-import Hero from './components/Hero.jsx'
-import Features from './components/Features.jsx'
-import Stages from './components/Stages.jsx'
-import Proof from './components/Proof.jsx'
-import Stats from './components/Stats.jsx'
-import Cta from './components/Cta.jsx'
-import Footer from './components/Footer.jsx'
+import Header from './components/Header.tsx'
+import Hero from './components/Hero.tsx'
+import Features from './components/Features.tsx'
+import Stages from './components/Stages.tsx'
+import Proof from './components/Proof.tsx'
+import Stats from './components/Stats.tsx'
+import Cta from './components/Cta.tsx'
+import Footer from './components/Footer.tsx'
 
 export default function App() {
   useEffect(() => {

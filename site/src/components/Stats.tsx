@@ -20,7 +20,7 @@ export default function Stats() {
         <p className="stats-claim">11 个部分，全部匹配</p>
       </div>
       <div className="stat-bars rv" data-ui role="img" aria-label="11 个对比部分全部与 tsgo 匹配，匹配率 100%">
-        {PARTS.map((p, idx) => (
+        {PARTS.map((p) => (
           <div
             key={p.name}
             className={`bar${p.accent ? ' bar-accent' : ''}${p.hideM ? ' hide-m' : ''}`}
