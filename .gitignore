@@ -6,6 +6,9 @@ dist/
 .workbuddy/
 .frontend-studio/
 
+# 浏览器工具产物
+.playwright-mcp/
+
 # 系统文件
 Thumbs.db
 .DS_Store

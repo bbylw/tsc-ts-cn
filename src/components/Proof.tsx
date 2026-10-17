@@ -1,4 +1,5 @@
 import type { CSSVars } from '../cssvars'
+import { IconCheck } from './icons'
 
 const ROWS: Array<{ part: string; what: string; how: string }> = [
   { part: '扫描器', what: 'token、取值、错误、重扫描、JSDoc', how: '所有文件' },
@@ -23,22 +24,26 @@ export default function Proof() {
       </div>
       <div className="table-wrap rv" style={{ '--d': '90ms' } as CSSVars}>
         <table className="proof-table">
+          <caption className="sr-only">tsc-ts 与 tsgo 在各编译器部分上的对比测试结果</caption>
           <thead>
             <tr>
-              <th>部分</th>
-              <th>对比 tsgo 的内容</th>
-              <th className="th-right">范围</th>
-              <th className="th-right">状态</th>
+              <th scope="col">部分</th>
+              <th scope="col">对比 tsgo 的内容</th>
+              <th scope="col" className="th-right">范围</th>
+              <th scope="col" className="th-right">状态</th>
             </tr>
           </thead>
           <tbody>
-            {ROWS.map((r) => (
-              <tr key={r.part}>
+            {ROWS.map((r, i) => (
+              <tr key={r.part} style={{ '--i': i } as CSSVars}>
                 <td className="td-part">{r.part}</td>
                 <td className="td-what">{r.what}</td>
                 <td className="td-how">{r.how}</td>
                 <td className="td-ok">
-                  <span className="pill-ok">匹配</span>
+                  <span className="pill-ok">
+                    <IconCheck size={11} />
+                    匹配
+                  </span>
                 </td>
               </tr>
             ))}

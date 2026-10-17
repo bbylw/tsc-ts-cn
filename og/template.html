@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <!--
+    OG 分享图模板（1200×630）。改动后重新生成 public/og.png：
+      Playwright 打开本文件，视口 1200×630，整页截图。
+    字体走 ../node_modules 下的 @fontsource 文件，仅本地渲染使用。
+  -->
+  <meta charset="UTF-8" />
+  <style>
+    @font-face {
+      font-family: 'Geist Sans';
+      src: url('../node_modules/@fontsource/geist-sans/files/geist-sans-latin-600-normal.woff2') format('woff2');
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: 'Geist Sans';
+      src: url('../node_modules/@fontsource/geist-sans/files/geist-sans-latin-500-normal.woff2') format('woff2');
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: 'Geist Mono';
+      src: url('../node_modules/@fontsource/geist-mono/files/geist-mono-latin-400-normal.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Geist Mono';
+      src: url('../node_modules/@fontsource/geist-mono/files/geist-mono-latin-500-normal.woff2') format('woff2');
+      font-weight: 500;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+
+    body {
+      font-family: 'Geist Sans', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #ffffff;
+      color: #171717;
+      position: relative;
+    }
+
+    /* 网格 + 光晕（与站点 hero 一致的氛围） */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(23, 23, 23, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(23, 23, 23, 0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      background-position: center top;
+      mask-image: radial-gradient(ellipse 820px 420px at 50% 0%, #000 12%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse 820px 420px at 50% 0%, #000 12%, transparent 78%);
+    }
+    .glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(720px 340px at 50% -100px, rgba(0, 112, 243, 0.08), transparent 70%);
+    }
+
+    .inner {
+      position: relative;
+      height: 100%;
+      padding: 64px 72px 56px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+    .brand .tri { width: 26px; height: 26px; }
+    .brand .tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 15px;
+      font-weight: 400;
+      color: #666;
+      border: 1px solid #eaeaea;
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-left: 2px;
+    }
+
+    .title {
+      margin-top: 74px;
+      font-size: 88px;
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+    }
+
+    .meta {
+      margin-top: 30px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 21px;
+      color: #666;
+    }
+    .meta .sep { margin: 0 10px; color: #c9c9c9; }
+
+    .bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #eaeaea;
+      padding-top: 26px;
+    }
+    .where { font-family: 'Geist Mono', monospace; font-size: 19px; color: #666; }
+    .cmd {
+      font-family: 'Geist Mono', monospace;
+      font-size: 19px;
+      color: #171717;
+      background: #fafafa;
+      border: 1px solid #eaeaea;
+      border-radius: 9px;
+      padding: 10px 18px;
+    }
+    .cmd .prompt { color: #0070f3; font-weight: 500; }
+  </style>
+  <body>
+    <div class="grid"></div>
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="brand">
+        <svg class="tri" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 23 21H1Z" fill="currentColor" /></svg>
+        tsc-ts
+        <span class="tag">Labs</span>
+      </div>
+      <div class="title">TypeScript 7.0.2，<br />原生再编译</div>
+      <div class="meta">11 parts<span class="sep">·</span>~17,000 units<span class="sep">·</span>all matched</div>
+      <div class="bottom">
+        <span class="where">tsc.ndjp.net</span>
+        <span class="cmd"><span class="prompt">$ </span>npm install -D tsc-ts</span>
+      </div>
+    </div>
+  </body>
+</html>

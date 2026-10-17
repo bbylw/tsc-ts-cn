@@ -1,3 +1,5 @@
+import { IconArrowUp, IconTriangle } from './icons'
+
 const COLS = [
   {
     head: '项目',
@@ -56,12 +58,17 @@ export default function Footer() {
         </div>
         <div className="footer-last">
           <span className="wordmark-footer">
-            <svg className="tri" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3 23 21H1Z" fill="currentColor" />
-            </svg>
+            <IconTriangle className="tri" size={15} />
             tsc-ts
+            <span className="labs-tag">Labs</span>
           </span>
-          <span className="footer-legal">2026 · Vercel Labs 实验项目 · Apache-2.0</span>
+          <div className="footer-meta">
+            <span className="footer-legal">2026 · Vercel Labs 实验项目 · Apache-2.0</span>
+            <a className="to-top" href="#top">
+              <IconArrowUp size={14} />
+              回到顶部
+            </a>
+          </div>
         </div>
       </div>
     </footer>

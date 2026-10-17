@@ -1,25 +1,5 @@
-import { useState } from 'react'
 import type { CSSVars } from '../cssvars'
-
-function Copy({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false)
-  return (
-    <button
-      className="term-copy"
-      onClick={async () => {
-        try {
-          await navigator.clipboard.writeText(text)
-        } catch {
-          /* 忽略 */
-        }
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1800)
-      }}
-    >
-      {copied ? '已复制' : '复制'}
-    </button>
-  )
-}
+import CopyButton from './CopyButton'
 
 const STEPS = [
   {
@@ -46,10 +26,10 @@ export default function Stages() {
         <h2>三步用上它</h2>
         <p>和 tsc 相同的命令行界面：同样的 tsconfig、同样的诊断格式、同样的退出码。</p>
       </div>
-      <div className="steps">
+      <ol className="steps">
         {STEPS.map((s, i) => (
-          <div className="step rv" key={s.head} style={{ '--d': `${i * 80}ms` } as CSSVars}>
-            <span className="step-no">{String(i + 1).padStart(2, '0')}</span>
+          <li className="step rv" key={s.head} style={{ '--d': `${i * 90}ms` } as CSSVars}>
+            <span className="step-no" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <h3>{s.head}</h3>
             <div className="step-term" data-ui>
               <pre className="term-body">
@@ -59,12 +39,12 @@ export default function Stages() {
                 <span className="dim">{s.resp}</span>
               </pre>
               <div className="step-copy">
-                <Copy text={s.call} />
+                <CopyButton text={s.call} />
               </div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   )
 }
