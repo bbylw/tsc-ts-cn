@@ -3,9 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-    paths:
-      - 'site/**'
-      - '.github/workflows/deploy.yml'
+    paths-ignore:
+      - '**.md'
   workflow_dispatch:
 
 permissions:
@@ -27,20 +26,18 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: site/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: 安装依赖
         run: npm ci
-        working-directory: site
 
       - name: tsc-ts 类型检查 + 构建
         run: npm run build
-        working-directory: site
 
       - name: 上传 Pages 产物
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site/dist
+          path: dist
 
   deploy:
     needs: build
