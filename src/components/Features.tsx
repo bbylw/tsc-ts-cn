@@ -4,9 +4,9 @@ import {
   IconBolt,
   IconBraces,
   IconCompare,
+  IconCpu,
   IconGlobe,
   IconLayers,
-  IconPackage,
 } from './icons'
 
 type Card = {
@@ -20,7 +20,7 @@ const CARDS: Card[] = [
   {
     Icon: IconBolt,
     title: '原生速度',
-    desc: '由 scriptc 从 TypeScript-Go 源码编译为原生可执行文件，各平台通过 npm 可选依赖分发，无需额外运行时。',
+    desc: '由 scriptc 0.4.2 从 TypeScript-Go 源码编译为原生可执行文件，各平台通过 npm 可选依赖分发，无需额外运行时。',
     mono: '@tsc-ts/win32-x64-msvc',
   },
   {
@@ -31,14 +31,14 @@ const CARDS: Card[] = [
   },
   {
     Icon: IconBraces,
-    title: 'API 服务',
-    desc: 'tsc-ts --api 与 tsc --api 7.0.2 逐条响应校验一致，补全、引用查找、签名用途即插即用。',
-    mono: 'getCompletionsAtPosition',
+    title: 'API 与编程接口',
+    desc: '--api 与 tsc --api 7.0.2 逐条响应一致；tsc-ts/api 提供 createProgram、TypeChecker 等编程接口，Windows 上还支持命名管道。',
+    mono: 'tsc-ts/api · --pipe',
   },
   {
     Icon: IconLayers,
     title: '增量构建',
-    desc: '支持 --build、--incremental 与 --watch，.tsbuildinfo 输出与 tsgo 的所有场景一致。',
+    desc: '支持 --build、--incremental 与 --watch；复合项目的重建也跑在检查线程上，.tsbuildinfo 输出与 tsgo 的所有场景一致。',
     mono: 'npx tsc-ts -b --incremental',
   },
   {
@@ -48,10 +48,10 @@ const CARDS: Card[] = [
     mono: '--locale zh-CN',
   },
   {
-    Icon: IconPackage,
-    title: '工程化就绪',
-    desc: '任务由 Turborepo 编排，lint 用 oxlint，格式化用 oxfmt；对比脚本随包发布，结果可复现。',
-    mono: 'npm test · *-corpus.mjs',
+    Icon: IconCpu,
+    title: '多线程检查',
+    desc: '--checkers N 在 N 个线程上检查，按可用内存自动选择线程数（最多 16 个）；诊断结果与单线程完全一致。',
+    mono: '--checkers 16',
   },
 ]
 

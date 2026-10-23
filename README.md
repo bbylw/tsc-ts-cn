@@ -51,7 +51,7 @@ npm run build:web
 
 - Node.js 24+ 与 npm
 - Go 1.26
-- 一个 scriptc 宿主环境：macOS、Linux 或 Windows，且具备可用的 `clang` 用于链接
+- 一个 scriptc 宿主环境：macOS、Linux 或 Windows，且具备可用的 `clang` 用于链接（Windows 上还需要 [zig](https://ziglang.org)：scriptc 在 Windows 上用它链接，并用它编译 `--api --pipe` 服务，即 `packages/tsc-ts/native/pipe-win32.c`）
 
 ## 构建
 
@@ -62,7 +62,7 @@ npm run build            # 构建 tsc-ts 的 Node 版本（packages/tsc-ts/dist�
 npm run build:oracle     # 在 packages/tsgo/dist 中构建 tsgo 参考版本
 ```
 
-`package.json` 固定使用 scriptc `0.3.5` 及其 `@scriptc/threads` 包。使用其他任何版本都会导致构建失败。
+`package.json` 固定使用 scriptc `0.4.2` 及其 `@scriptc/threads` 包。使用其他任何版本都会导致构建失败。
 
 ## 编译器
 
@@ -86,7 +86,7 @@ npm run build:oracle     # 在 packages/tsgo/dist 中构建 tsgo 参考版本
 
 ## API 服务
 
-`tsc-ts --api` 提供与 TypeScript 7.0.2 的 `tsc --api` 相同的 API，通过 stdin 与 stdout 通信，因此驱动 `tsc --api` 的工具（例如 scriptc）可以改用 `tsc-ts`。
+`tsc-ts --api` 提供与 TypeScript 7.0.2 的 `tsc --api` 相同的 API，通过 stdin 与 stdout 通信，因此驱动 `tsc --api` 的工具（例如 scriptc）可以改用 `tsc-ts`。在 Windows 上，原生可执行文件还可以通过它创建的命名管道提供该 API（`--pipe \\.\pipe\<name>`），与 `tsc --api --pipe` 的做法一致。
 
 ```sh
 npm run build -w tsc-ts
@@ -100,6 +100,8 @@ npm run build:native -w tsc-ts       # packages/tsc-ts/dist/tsc
 npm run build:native:dev -w tsc-ts   # 未优化版本，构建更快
 TSC_TS_LIB_DIR=upstream/typescript-go/internal/bundled/libs packages/tsc-ts/dist/tsc -p path/to/project
 ```
+
+`build:native` 会使用已提交的 profile `packages/tsc-ts/profiles/tsc-ts.profdata` 进行优化。`npm run refresh-profile -w tsc-ts -- --project <dir>[:<tsconfig>]` 可以重新收集它：该命令会构建一个带插桩的 tsc-ts，用其检查 tsc-ts 源码以及各个项目，并合并结果。旧源码生成的 profile 仍适用于未改动的函数。
 
 `TSC_TS_BIN=packages/tsc-ts/dist/tsc` 用于运行 tsc-ts 中那些针对原生构建的测试。
 

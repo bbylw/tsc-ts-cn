@@ -5,6 +5,7 @@ const LINKS = [
   { href: '#features', label: '特性' },
   { href: '#stages', label: '快速开始' },
   { href: '#proof', label: '对比测试' },
+  { href: '#releases', label: '更新' },
   { href: 'https://vercel.com/labs', label: 'Vercel Labs' },
 ]
 

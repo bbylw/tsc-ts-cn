@@ -4,6 +4,7 @@ import Hero from './components/Hero.tsx'
 import Features from './components/Features.tsx'
 import Stages from './components/Stages.tsx'
 import Proof from './components/Proof.tsx'
+import Release from './components/Release.tsx'
 import Stats from './components/Stats.tsx'
 import Cta from './components/Cta.tsx'
 import Footer from './components/Footer.tsx'
@@ -34,6 +35,7 @@ export default function App() {
         <Features />
         <Stages />
         <Proof />
+        <Release />
         <Stats />
         <Cta />
       </main>

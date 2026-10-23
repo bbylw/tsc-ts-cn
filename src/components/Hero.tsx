@@ -50,6 +50,7 @@ export default function Hero() {
         >
           <IconTriangle size={11} />
           Vercel Labs · 实验项目
+          <span className="badge-ver">v0.0.8</span>
           <IconArrowRight size={12} className="badge-arrow" />
         </a>
         <h1 className="hero-title rv" style={{ '--d': '70ms' } as CSSVars}>
@@ -114,7 +115,7 @@ export default function Hero() {
             {cmd}
             <span className="caret" aria-hidden="true" />
             {'\n'}
-            <span className="dim">+ tsc-ts 0.0.2 · added 2 packages · 原生二进制随平台可选依赖安装</span>
+            <span className="dim">+ tsc-ts 0.0.8 · added 3 packages · 原生二进制随平台可选依赖安装</span>
           </pre>
         </div>
       </div>

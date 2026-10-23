@@ -462,6 +462,11 @@ html.js .rv.in { animation: rise 0.62s var(--ease-out) var(--d, 0s) both; }
 .hero-badge:hover { color: var(--ink); border-color: var(--border-strong); }
 .badge-arrow { transition: transform 0.18s ease; }
 .hero-badge:hover .badge-arrow { transform: translateX(2px); }
+.badge-ver {
+  padding-left: 8px;
+  border-left: 1px solid var(--border);
+  color: var(--ink);
+}
 
 .hero-title {
   font-size: clamp(2.6rem, 1.5rem + 4.6vw, 4.35rem);
@@ -639,6 +644,68 @@ html.js .table-wrap.rv.in tbody tr {
 }
 .proof-src { margin-top: 16px; font-size: 12.5px; line-height: 1.7; color: var(--muted); }
 
+/* ---------- releases · 上游版本 ---------- */
+.releases { padding: clamp(84px, 8.5vw, 116px) 24px; }
+.release-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(40px, 7vw, 96px);
+  align-items: start;
+}
+.release-head h2 {
+  font-size: clamp(1.8rem, 1.3rem + 2.1vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.release-head p {
+  max-width: 42ch;
+  margin-top: 14px;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.release-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--border-strong);
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+.release-link:hover { color: var(--accent-deep); border-color: var(--accent); }
+.release-list { list-style: none; border-top: 1px solid var(--border); }
+.release-list li {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.release-metric {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.release-metric.code {
+  font-family: 'Geist Mono', monospace;
+  font-size: clamp(1.4rem, 1.05rem + 1.1vw, 1.8rem);
+  letter-spacing: -0.02em;
+}
+.release-copy h3 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+.release-copy p { margin-top: 5px; font-size: 14px; line-height: 1.7; color: var(--muted); text-wrap: pretty; }
+
 /* ---------- stats · 黑底数字带 ---------- */
 .stat-band {
   background: var(--band);
@@ -803,6 +870,11 @@ html.js .table-wrap.rv.in tbody tr {
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .proof-table { min-width: 620px; }
 
+  .releases { padding: 76px 20px; }
+  .release-inner { grid-template-columns: 1fr; gap: 44px; }
+  .release-head p { max-width: none; }
+  .release-list li { grid-template-columns: 170px minmax(0, 1fr); gap: 20px; }
+
   .stat-inner { grid-template-columns: repeat(2, 1fr); gap: 44px 16px; }
 
   .cta { padding: 88px 20px; }
@@ -818,6 +890,7 @@ html.js .table-wrap.rv.in tbody tr {
   .hero-actions,
   .cta-actions { flex-direction: column; align-items: stretch; }
   .card-grid { grid-template-columns: 1fr; }
+  .release-list li { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
 }
 
 @media (max-width: 400px) {
