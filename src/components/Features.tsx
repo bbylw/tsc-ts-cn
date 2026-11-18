@@ -20,8 +20,8 @@ const CARDS: Card[] = [
   {
     Icon: IconBolt,
     title: '原生速度',
-    desc: '由 scriptc 0.4.2 从 TypeScript-Go 源码编译为原生可执行文件，各平台通过 npm 可选依赖分发，无需额外运行时。',
-    mono: '@tsc-ts/win32-x64-msvc',
+    desc: '由 scriptc 0.4.8 与两阶段 profile 从 TypeScript-Go 源码编译为原生可执行文件，各平台通过 npm 可选依赖分发，无需额外运行时。',
+    mono: '@tsc-ts/linux-x64-gnu',
   },
   {
     Icon: IconCompare,
@@ -32,13 +32,13 @@ const CARDS: Card[] = [
   {
     Icon: IconBraces,
     title: 'API 与编程接口',
-    desc: '--api 与 tsc --api 7.0.2 逐条响应一致；tsc-ts/api 提供 createProgram、TypeChecker 等编程接口，Windows 上还支持命名管道。',
-    mono: 'tsc-ts/api · --pipe',
+    desc: '--api 跟随 TypeScript 7.1 的 API 协议：补全可直接补上项目与依赖里的自动导入，getImportAdderEdits 给出添加 import 的编辑；Windows 走命名管道，macOS 与 Linux 走 Unix socket。',
+    mono: 'tsc-ts/api · --listen',
   },
   {
     Icon: IconLayers,
     title: '增量构建',
-    desc: '支持 --build、--incremental 与 --watch；复合项目的重建也跑在检查线程上，.tsbuildinfo 输出与 tsgo 的所有场景一致。',
+    desc: '支持 --build、--incremental 与 --watch；监视模式的首个构建在解析线程上加载程序，.tsbuildinfo 输出与 tsgo 的所有场景一致。',
     mono: 'npx tsc-ts -b --incremental',
   },
   {
@@ -49,9 +49,9 @@ const CARDS: Card[] = [
   },
   {
     Icon: IconCpu,
-    title: '多线程检查',
-    desc: '--checkers N 在 N 个线程上检查，按可用内存自动选择线程数（最多 16 个）；诊断结果与单线程完全一致。',
-    mono: '--checkers 16',
+    title: '多线程与自动调优',
+    desc: '--checkers N 在 N 个线程上检查；每个项目的运行记录写入 ~/.cache/tsc-ts/runs-v1/，后续运行据此挑更快的配置，tsc-ts doctor 还会实测并给出建议。',
+    mono: '--checkers 16 · doctor',
   },
 ]
 

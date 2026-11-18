@@ -3,19 +3,19 @@ import { IconArrowRight } from './icons'
 
 const ITEMS = [
   {
-    metric: '9.2–11.1%',
+    metric: '1.16–1.21×',
     title: '类型检查提速',
-    desc: '相比 0.0.7；16 个检查线程时为 6.8–15.3%，输出完全一致。',
+    desc: '0.1.0 对比 0.0.10：五个基准项目在 --checkers 1 下快 1.16–1.21 倍（VS Code 33.2 s → 28.6 s），16 线程下快 1.08–1.19 倍。',
   },
   {
-    metric: '18–22%',
-    title: '峰值内存下降',
-    desc: '单检查线程下的峰值 RSS 降幅；16 线程时为 15–22%。',
+    metric: '27%',
+    title: '共享检查（实验）',
+    desc: 'TSC_TS_SHARE=1 时检查线程共享已算出的类型，T3 服务端项目在 16 检查器下快 27%，诊断与单线程一致。',
   },
   {
-    metric: '--pipe',
-    title: 'Windows 命名管道',
-    desc: '--api --pipe 提供与 tsc --api --pipe 相同的服务，仅运行服务的用户可打开该管道。',
+    metric: 'doctor',
+    title: '运行记录与自动调优',
+    desc: '每个项目把运行配置与阶段耗时写入 ~/.cache/tsc-ts/runs-v1/，后续运行据此采用更快的配置；tsc-ts doctor 实测后给出建议。',
   },
 ]
 
@@ -24,10 +24,10 @@ export default function Release() {
     <section id="releases" className="releases">
       <div className="release-inner">
         <div className="release-head rv">
-          <h2>0.0.8，更快也更省内存</h2>
+          <h2>0.1.5，跟随 TypeScript 7.1.0-beta</h2>
           <p>
-            10 月 23 日发布：由 scriptc 0.4.2 构建，类型检查更快、峰值内存更低，
-            Windows 上新增命名管道 API。
+            11 月 11 日发布：0.1 系列重新移植到 TypeScript 7.1.0-beta，由 scriptc 0.4.8
+            构建，检查更快，并加入共享检查、运行记录与自动调优，以及 Unix socket 上的 --api 服务。
           </p>
           <a
             className="release-link"

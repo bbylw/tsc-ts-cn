@@ -5,7 +5,7 @@ const STEPS = [
   {
     head: '安装',
     call: 'npm install -D tsc-ts',
-    resp: '+ tsc-ts 0.0.8 · added 3 packages in 3s',
+    resp: '+ tsc-ts 0.1.5 · added 3 packages in 3s',
   },
   {
     head: '编译',

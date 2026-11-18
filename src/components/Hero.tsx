@@ -50,18 +50,18 @@ export default function Hero() {
         >
           <IconTriangle size={11} />
           Vercel Labs · 实验项目
-          <span className="badge-ver">v0.0.8</span>
+          <span className="badge-ver">v0.1.5</span>
           <IconArrowRight size={12} className="badge-arrow" />
         </a>
         <h1 className="hero-title rv" style={{ '--d': '70ms' } as CSSVars}>
-          TypeScript 7.0.2，
+          TypeScript 7.1.0-beta，
           <br />
           原生再编译
         </h1>
         <p className="hero-sub rv" style={{ '--d': '140ms' } as CSSVars}>
-          tsc-ts 是 TypeScript-Go（tsgo）的实验性原生移植，由 scriptc
-          编译为原生可执行文件。编译器的每一部分都在官方测试语料上与 tsgo
-          逐项对比，全部匹配。
+          tsc-ts 是 TypeScript 7.1.0-beta（TypeScript-Go，tsgo）的实验性原生移植，
+          由 scriptc 0.4.8 编译为原生可执行文件。编译器的每一部分都在官方测试语料上与
+          tsgo 逐项对比，全部匹配。
         </p>
         <div className="hero-actions rv" style={{ '--d': '210ms' } as CSSVars}>
           <button type="button" className="btn btn-primary" onClick={copy}>
@@ -115,7 +115,7 @@ export default function Hero() {
             {cmd}
             <span className="caret" aria-hidden="true" />
             {'\n'}
-            <span className="dim">+ tsc-ts 0.0.8 · added 3 packages · 原生二进制随平台可选依赖安装</span>
+            <span className="dim">+ tsc-ts 0.1.5 · added 3 packages · 原生二进制随平台可选依赖安装</span>
           </pre>
         </div>
       </div>
